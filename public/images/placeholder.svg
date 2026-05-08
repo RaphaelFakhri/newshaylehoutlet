@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice">
+  <rect width="600" height="800" fill="#0E1A2B"/>
+  <rect x="40" y="40" width="520" height="720" fill="none" stroke="#B08D57" stroke-width="2" stroke-dasharray="6 6"/>
+  <text x="300" y="380" text-anchor="middle" font-family="Georgia, serif" font-size="38" fill="#F5F1EA">New Shayleh</text>
+  <text x="300" y="430" text-anchor="middle" font-family="Georgia, serif" font-size="38" fill="#F5F1EA">Outlet</text>
+  <text x="300" y="490" text-anchor="middle" font-family="Inter, sans-serif" font-size="18" fill="#B08D57" letter-spacing="4">REPLACE WITH PHOTO</text>
+</svg>

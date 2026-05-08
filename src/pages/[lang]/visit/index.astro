@@ -1,0 +1,61 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import WhatsAppButton from '../../../components/WhatsAppButton.astro';
+import { t, type Lang } from '../../../i18n/translations';
+import { SITE } from '../../../config';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'en' } }, { params: { lang: 'ar' } }];
+}
+
+const lang = Astro.params.lang as Lang;
+const tt = t(lang);
+---
+
+<Layout lang={lang} title={tt('visit.title')}>
+  <section class="container-x py-12 sm:py-20">
+    <h1 class="font-serif text-4xl sm:text-5xl mb-10">{tt('visit.title')}</h1>
+
+    <div class="grid lg:grid-cols-2 gap-10">
+      <div class="space-y-6">
+        <div>
+          <div class="text-xs uppercase tracking-wider text-ink/50 mb-1">
+            {tt('visit.address_label')}
+          </div>
+          <div class="text-lg">{tt('visit.address')}</div>
+          <a href={SITE.googleMapsUrl} target="_blank" rel="noopener" class="text-sm underline underline-offset-4 mt-1 inline-block">
+            Google Maps →
+          </a>
+        </div>
+
+        <div>
+          <div class="text-xs uppercase tracking-wider text-ink/50 mb-1">
+            {tt('visit.phone_label')}
+          </div>
+          <a href={`tel:+${SITE.whatsapp}`} class="text-lg block">{SITE.phoneDisplay}</a>
+        </div>
+
+        <div>
+          <div class="text-xs uppercase tracking-wider text-ink/50 mb-1">
+            {tt('visit.hours_label')}
+          </div>
+          <div class="text-lg">{tt('visit.hours')}</div>
+        </div>
+
+        <div class="pt-4">
+          <WhatsAppButton lang={lang} variant="large" />
+        </div>
+      </div>
+
+      <div class="aspect-[4/3] lg:aspect-auto bg-ink/5 rounded-md overflow-hidden">
+        <iframe
+          src="https://www.google.com/maps?q=New+Shayleh+Lebanon&output=embed"
+          class="w-full h-full min-h-[320px]"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Map"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+</Layout>

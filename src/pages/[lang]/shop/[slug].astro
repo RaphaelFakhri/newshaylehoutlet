@@ -1,0 +1,107 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import WhatsAppButton from '../../../components/WhatsAppButton.astro';
+import ProductCard from '../../../components/ProductCard.astro';
+import { getCollection } from 'astro:content';
+import { t, type Lang } from '../../../i18n/translations';
+
+export async function getStaticPaths() {
+  const products = await getCollection('products');
+  const langs: Lang[] = ['en', 'ar'];
+  return langs.flatMap((lang) =>
+    products.map((p) => ({
+      params: { lang, slug: p.id },
+      props: { product: p },
+    }))
+  );
+}
+
+const lang = Astro.params.lang as Lang;
+const tt = t(lang);
+const { product } = Astro.props;
+const data = product.data;
+const name = lang === 'ar' ? data.name_ar : data.name_en;
+const description = lang === 'ar' ? data.description_ar : data.description_en;
+
+const all = (await getCollection('products')).filter(
+  (p) => p.data.category === data.category && p.id !== product.id
+);
+const related = all.slice(0, 4);
+---
+
+<Layout lang={lang} title={name} description={description}>
+  <article class="container-x py-12">
+    <nav class="text-sm text-ink/60 mb-6">
+      <a href={`/${lang}/`} class="hover:text-burgundy">{tt('nav.home')}</a>
+      <span class="mx-2">/</span>
+      <a href={`/${lang}/shop/`} class="hover:text-burgundy">{tt('nav.shop')}</a>
+      <span class="mx-2">/</span>
+      <span>{tt(`category.${data.category}` as const)}</span>
+    </nav>
+
+    <div class="grid lg:grid-cols-2 gap-10 lg:gap-16">
+      <div>
+        <div class="aspect-[3/4] bg-ink/5 rounded-md overflow-hidden">
+          <img
+            src={data.images[0] ?? '/images/placeholder.jpg'}
+            alt={name}
+            class="h-full w-full object-cover"
+          />
+        </div>
+        {data.images.length > 1 && (
+          <div class="grid grid-cols-4 gap-2 mt-2">
+            {data.images.slice(1).map((img) => (
+              <div class="aspect-square bg-ink/5 rounded overflow-hidden">
+                <img src={img} alt={name} class="h-full w-full object-cover" />
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <div>
+        <div class="text-xs uppercase tracking-[0.2em] text-burgundy mb-3">
+          {tt(`category.${data.category}` as const)}
+        </div>
+        <h1 class="font-serif text-3xl sm:text-4xl leading-tight">{name}</h1>
+
+        {data.price && (
+          <div class="mt-4 text-xl font-medium">
+            <span class="text-ink/60 text-sm uppercase tracking-wider me-2">
+              {tt('product.price')}:
+            </span>
+            {data.price}
+          </div>
+        )}
+
+        {description && (
+          <p class="mt-6 text-ink/80 leading-relaxed">{description}</p>
+        )}
+
+        <div class="mt-8">
+          <WhatsAppButton lang={lang} productName={name} variant="large" />
+          {!data.price && (
+            <p class="mt-3 text-sm text-ink/60">{tt('product.contact_for_price')}</p>
+          )}
+        </div>
+      </div>
+    </div>
+
+    {related.length > 0 && (
+      <section class="mt-20">
+        <h2 class="font-serif text-2xl sm:text-3xl mb-6">{tt('product.related')}</h2>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-8">
+          {related.map((p) => (
+            <ProductCard
+              lang={lang}
+              slug={p.id}
+              name={lang === 'ar' ? p.data.name_ar : p.data.name_en}
+              image={p.data.images[0] ?? '/images/placeholder.jpg'}
+              category={tt(`category.${p.data.category}` as const)}
+            />
+          ))}
+        </div>
+      </section>
+    )}
+  </article>
+</Layout>

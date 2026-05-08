@@ -1,0 +1,43 @@
+---
+import { t, type Lang } from '../i18n/translations';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const tt = t(lang);
+const otherLang: Lang = lang === 'en' ? 'ar' : 'en';
+
+const links = [
+  { href: `/${lang}/`, label: tt('nav.home') },
+  { href: `/${lang}/shop/`, label: tt('nav.shop') },
+  { href: `/${lang}/shop/?category=suits`, label: tt('nav.suits') },
+  { href: `/${lang}/shop/?category=shirts`, label: tt('nav.shirts') },
+  { href: `/${lang}/shop/?category=pants`, label: tt('nav.pants') },
+  { href: `/${lang}/shop/?category=sweaters`, label: tt('nav.sweaters') },
+  { href: `/${lang}/visit/`, label: tt('nav.visit') },
+];
+---
+
+<header class="border-b border-ink/10 bg-cream/95 backdrop-blur sticky top-0 z-40">
+  <div class="container-x flex items-center justify-between gap-4 py-4">
+    <a href={`/${lang}/`} class="font-serif text-xl sm:text-2xl tracking-wide">
+      {tt('site.name')}
+    </a>
+    <nav class="hidden md:flex items-center gap-6 text-sm">
+      {links.map((l) => (
+        <a href={l.href} class="hover:text-burgundy transition">{l.label}</a>
+      ))}
+    </nav>
+    <a href={`/${otherLang}/`} class="text-sm border border-ink/30 rounded-full px-3 py-1 hover:bg-ink hover:text-cream transition">
+      {tt('lang.switch')}
+    </a>
+  </div>
+  <nav class="md:hidden border-t border-ink/10 overflow-x-auto">
+    <div class="container-x flex gap-5 py-3 text-sm whitespace-nowrap">
+      {links.slice(1).map((l) => (
+        <a href={l.href} class="hover:text-burgundy transition">{l.label}</a>
+      ))}
+    </div>
+  </nav>
+</header>

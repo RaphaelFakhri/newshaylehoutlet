@@ -1,0 +1,37 @@
+---
+import { t, type Lang } from '../i18n/translations';
+import { SITE } from '../config';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const tt = t(lang);
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-ink/10 bg-ink text-cream/90 mt-16">
+  <div class="container-x py-12 grid sm:grid-cols-3 gap-8">
+    <div>
+      <div class="font-serif text-xl mb-2">{tt('site.name')}</div>
+      <p class="text-sm text-cream/70">{tt('site.tagline')}</p>
+    </div>
+    <div>
+      <div class="text-sm uppercase tracking-wider text-cream/60 mb-2">{tt('visit.title')}</div>
+      <div class="text-sm">{tt('visit.address')}</div>
+      <a href={SITE.googleMapsUrl} class="text-sm underline mt-1 inline-block" target="_blank" rel="noopener">
+        Google Maps
+      </a>
+    </div>
+    <div>
+      <div class="text-sm uppercase tracking-wider text-cream/60 mb-2">{tt('visit.phone_label')}</div>
+      <a href={`https://wa.me/${SITE.whatsapp}`} class="text-sm" target="_blank" rel="noopener">
+        {SITE.phoneDisplay}
+      </a>
+      <div class="text-sm mt-2 text-cream/70">{tt('visit.hours')}</div>
+    </div>
+  </div>
+  <div class="container-x pb-6 text-xs text-cream/50">
+    © {year} {tt('site.name')}. {tt('footer.rights')}
+  </div>
+</footer>

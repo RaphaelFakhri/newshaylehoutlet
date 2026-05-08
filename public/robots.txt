@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://newshaylehoutlet.store/sitemap-index.xml

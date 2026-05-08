@@ -1,0 +1,85 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import ProductCard from '../../../components/ProductCard.astro';
+import { getCollection } from 'astro:content';
+import { t, type Lang } from '../../../i18n/translations';
+import { CATEGORIES } from '../../../config';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'en' } }, { params: { lang: 'ar' } }];
+}
+
+const lang = Astro.params.lang as Lang;
+const tt = t(lang);
+
+const products = (await getCollection('products')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+---
+
+<Layout lang={lang} title={tt('shop.title')}>
+  <section class="container-x py-12">
+    <h1 class="font-serif text-4xl sm:text-5xl mb-8">{tt('shop.title')}</h1>
+
+    <div class="flex flex-wrap gap-2 mb-10" id="filter-bar">
+      <button data-cat="all" class="filter-btn active px-4 py-2 rounded-full border border-ink/30 text-sm">
+        {tt('nav.shop')}
+      </button>
+      {CATEGORIES.map((c) => (
+        <button data-cat={c} class="filter-btn px-4 py-2 rounded-full border border-ink/30 text-sm">
+          {tt(`category.${c}` as const)}
+        </button>
+      ))}
+    </div>
+
+    {products.length === 0 ? (
+      <p class="text-ink/60">{tt('shop.empty')}</p>
+    ) : (
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-8" id="product-grid">
+        {products.map((p) => (
+          <div class="product-item" data-cat={p.data.category}>
+            <ProductCard
+              lang={lang}
+              slug={p.id}
+              name={lang === 'ar' ? p.data.name_ar : p.data.name_en}
+              image={p.data.images[0] ?? '/images/placeholder.jpg'}
+              category={tt(`category.${p.data.category}` as const)}
+            />
+          </div>
+        ))}
+      </div>
+    )}
+  </section>
+</Layout>
+
+<style>
+  .filter-btn.active {
+    @apply bg-ink text-cream border-ink;
+  }
+</style>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const initial = params.get('category') ?? 'all';
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const items = document.querySelectorAll<HTMLElement>('.product-item');
+
+  function apply(cat: string) {
+    buttons.forEach((b) => b.classList.toggle('active', b.dataset.cat === cat));
+    items.forEach((it) => {
+      it.style.display = cat === 'all' || it.dataset.cat === cat ? '' : 'none';
+    });
+  }
+
+  apply(initial);
+  buttons.forEach((b) =>
+    b.addEventListener('click', () => {
+      const cat = b.dataset.cat ?? 'all';
+      apply(cat);
+      const url = new URL(window.location.href);
+      if (cat === 'all') url.searchParams.delete('category');
+      else url.searchParams.set('category', cat);
+      history.replaceState(null, '', url);
+    })
+  );
+</script>

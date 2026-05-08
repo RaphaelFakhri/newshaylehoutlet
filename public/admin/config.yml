@@ -1,0 +1,42 @@
+backend:
+  name: github
+  repo: OWNER/REPO   # replace with your-username/your-repo after pushing to GitHub
+  branch: main
+
+media_folder: "public/images/products"
+public_folder: "/images/products"
+
+site_url: https://newshaylehoutlet.store
+display_url: https://newshaylehoutlet.store
+logo_url: https://newshaylehoutlet.store/favicon.svg
+
+collections:
+  - name: "products"
+    label: "Products"
+    folder: "src/content/products"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { name: "name_en", label: "Name (English)", widget: "string" }
+      - { name: "name_ar", label: "الاسم (عربي)", widget: "string" }
+      - { name: "description_en", label: "Description (English)", widget: "text", required: false }
+      - { name: "description_ar", label: "الوصف (عربي)", widget: "text", required: false }
+      - name: "category"
+        label: "Category"
+        widget: "select"
+        options:
+          - { label: "Suits", value: "suits" }
+          - { label: "Shirts", value: "shirts" }
+          - { label: "Pants", value: "pants" }
+          - { label: "Sweaters", value: "sweaters" }
+      - { name: "price", label: "Price (optional)", widget: "string", required: false }
+      - name: "images"
+        label: "Images"
+        widget: "list"
+        field: { name: "image", label: "Image", widget: "image" }
+      - { name: "featured", label: "Featured on Home", widget: "boolean", default: false }
+      - { name: "in_stock", label: "In Stock", widget: "boolean", default: true }
+      - { name: "order", label: "Display order (lower = first)", widget: "number", default: 0 }
+      - { name: "body", label: "Body (unused)", widget: "hidden", default: "" }

@@ -1,0 +1,93 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import WhatsAppButton from '../../components/WhatsAppButton.astro';
+import { getCollection } from 'astro:content';
+import { t, type Lang } from '../../i18n/translations';
+import { CATEGORIES } from '../../config';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'en' } }, { params: { lang: 'ar' } }];
+}
+
+const lang = Astro.params.lang as Lang;
+const tt = t(lang);
+
+const products = await getCollection('products');
+const featured = products
+  .filter((p) => p.data.featured)
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 4);
+---
+
+<Layout lang={lang}>
+  <section class="container-x pt-12 pb-16 sm:pt-20 sm:pb-24">
+    <div class="grid lg:grid-cols-2 gap-10 items-center">
+      <div>
+        <div class="text-xs uppercase tracking-[0.2em] text-burgundy mb-4">
+          {tt('visit.address')}
+        </div>
+        <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl leading-tight">
+          {tt('hero.title')}
+        </h1>
+        <p class="mt-5 text-lg text-ink/70 max-w-md">
+          {tt('hero.subtitle')}
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href={`/${lang}/shop/`} class="btn-primary">{tt('hero.cta')}</a>
+          <WhatsAppButton lang={lang} />
+        </div>
+      </div>
+      <div class="relative aspect-[4/5] bg-ink/5 rounded-md overflow-hidden">
+        <img
+          src="/images/hero.svg"
+          alt={tt('hero.title')}
+          class="h-full w-full object-cover"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="container-x py-12">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
+      {CATEGORIES.map((c) => (
+        <a href={`/${lang}/shop/?category=${c}`} class="group relative aspect-square bg-ink rounded-md overflow-hidden">
+          <img
+            src={`/images/placeholder.svg`}
+            alt={tt(`category.${c}` as const)}
+            class="h-full w-full object-cover opacity-70 group-hover:opacity-90 transition"
+          />
+          <div class="absolute inset-0 flex items-end p-4">
+            <span class="font-serif text-xl sm:text-2xl text-cream">
+              {tt(`category.${c}` as const)}
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="container-x py-16">
+    <div class="flex items-end justify-between mb-8">
+      <h2 class="font-serif text-3xl sm:text-4xl">{tt('shop.title')}</h2>
+      <a href={`/${lang}/shop/`} class="text-sm underline underline-offset-4 hover:text-burgundy">
+        {tt('nav.shop')} →
+      </a>
+    </div>
+    {featured.length === 0 ? (
+      <p class="text-ink/60">{tt('shop.empty')}</p>
+    ) : (
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-8">
+        {featured.map((p) => (
+          <ProductCard
+            lang={lang}
+            slug={p.id}
+            name={lang === 'ar' ? p.data.name_ar : p.data.name_en}
+            image={p.data.images[0] ?? '/images/placeholder.jpg'}
+            category={tt(`category.${p.data.category}` as const)}
+          />
+        ))}
+      </div>
+    )}
+  </section>
+</Layout>
