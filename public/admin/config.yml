@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: OWNER/REPO   # replace with your-username/your-repo after pushing to GitHub
+  repo: RaphaelFakhri/newshaylehoutlet
   branch: main
 
 media_folder: "public/images/products"
