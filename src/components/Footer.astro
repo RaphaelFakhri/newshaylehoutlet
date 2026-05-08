@@ -25,8 +25,11 @@ const year = new Date().getFullYear();
     </div>
     <div>
       <div class="text-sm uppercase tracking-wider text-cream/60 mb-2">{tt('visit.phone_label')}</div>
-      <a href={`https://wa.me/${SITE.whatsapp}`} class="text-sm" target="_blank" rel="noopener">
+      <a href={`https://wa.me/${SITE.whatsapp}`} class="text-sm block" target="_blank" rel="noopener">
         {SITE.phoneDisplay}
+      </a>
+      <a href={`mailto:${SITE.email}`} class="text-sm block mt-1 underline-offset-4 hover:underline">
+        {SITE.email}
       </a>
       <div class="text-sm mt-2 text-cream/70">{tt('visit.hours')}</div>
     </div>

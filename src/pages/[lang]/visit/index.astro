@@ -37,6 +37,13 @@ const tt = t(lang);
 
         <div>
           <div class="text-xs uppercase tracking-wider text-ink/50 mb-1">
+            {tt('visit.email_label')}
+          </div>
+          <a href={`mailto:${SITE.email}`} class="text-lg block hover:text-burgundy">{SITE.email}</a>
+        </div>
+
+        <div>
+          <div class="text-xs uppercase tracking-wider text-ink/50 mb-1">
             {tt('visit.hours_label')}
           </div>
           <div class="text-lg">{tt('visit.hours')}</div>

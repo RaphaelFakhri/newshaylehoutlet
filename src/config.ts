@@ -3,6 +3,7 @@ export const SITE = {
   domain: 'newshaylehoutlet.store',
   whatsapp: '9613766921',
   phoneDisplay: '+961 3 766 921',
+  email: 'hello@newshaylehoutlet.store',
   instagram: '',
   facebook: '',
   googleMapsUrl: 'https://maps.google.com/?q=New+Shayleh+Lebanon',
