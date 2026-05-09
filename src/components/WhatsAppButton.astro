@@ -13,7 +13,7 @@ const tt = t(lang);
 
 const text = productName
   ? `${tt('product.message')} ${productName}`
-  : tt('hero.whatsapp');
+  : tt('hero.message');
 
 const href = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(text)}`;
 const buttonLabel = label ?? (productName ? tt('product.order') : tt('hero.whatsapp'));
