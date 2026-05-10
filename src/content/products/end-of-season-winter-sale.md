@@ -6,7 +6,7 @@ description_ar: بدلات شتوية، خصم
 category: suits
 price: 15$ - 35$
 images:
-  - /images/products/7567BFAF-0DC1-4F21-92C2-03BEA3003B90.jpeg
+  - /images/products/CD3D8F74-1680-4CE1-BB34-B6953761.jpg
 featured: true
 in_stock: true
 order: 1
