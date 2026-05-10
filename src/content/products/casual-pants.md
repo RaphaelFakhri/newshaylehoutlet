@@ -6,7 +6,7 @@ description_ar: بنطلون غير رسمي قياس صغير
 category: pants
 price: 15$
 images:
-  - /images/products/0721C788-6678-4AF9-92C1-60DC54709A43.jpeg
+  - /images/products/947FDF64-2837-46DB-A8E6-1E0E80AD.jpg
 featured: true
 in_stock: true
 order: 0
