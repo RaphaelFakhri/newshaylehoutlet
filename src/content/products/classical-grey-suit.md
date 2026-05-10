@@ -6,7 +6,7 @@ description_ar: بدلة رمادي كلاسيكي قياس وسط
 category: suits
 price: 25$
 images:
-  - /images/products/B072A5AA-BFB6-46DA-ABE6-9C141462752C.jpeg
+  - /images/products/D8D94DD0-FE6D-4A12-A9B2-770E1E41.jpg
 featured: false
 in_stock: true
 order: 2
