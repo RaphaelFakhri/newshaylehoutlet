@@ -15,7 +15,8 @@ collections:
     label: "Products"
     folder: "src/content/products"
     create: true
-    slug: "{{slug}}"
+    identifier_field: "name_en"
+    slug: "{{fields.name_en}}"
     extension: "md"
     format: "frontmatter"
     fields:
