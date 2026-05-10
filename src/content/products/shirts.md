@@ -6,7 +6,7 @@ description_ar: منتصف الموسم، قمصان من كل المقاسات
 category: shirts
 price: 10$
 images:
-  - /images/products/BE81AF9E-91CC-4238-B81D-FD8414B04B89.jpeg
+  - /images/products/80486CF6-661B-4A5F-B128-FC479238.jpg
 featured: true
 in_stock: true
 order: 1
