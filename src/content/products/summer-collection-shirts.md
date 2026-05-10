@@ -6,7 +6,7 @@ description_ar: قمصان صيفي كل المقاسات والالوان
 category: shirts
 price: 10$ - 20$
 images:
-  - /images/products/7654FDDC-BCDB-4DF0-8B9F-5994EBC8B68D.jpeg
+  - /images/products/12AF1D9F-87CC-436D-AFE0-7BB753E4.jpg
 featured: true
 in_stock: true
 order: 0
