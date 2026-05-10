@@ -6,7 +6,7 @@ description_ar: فميص بار ٣، مربع ازرق سالمون
 category: shirts
 price: 15$
 images:
-  - /images/products/B7115362-4D0B-4D58-BB77-60296424B0CE.jpeg
+  - /images/products/912C83E8-C16B-4C55-A8DF-63362FFB.jpg
 featured: false
 in_stock: true
 order: 2
