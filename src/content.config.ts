@@ -8,7 +8,7 @@ const products = defineCollection({
     name_ar: z.string(),
     description_en: z.string().optional(),
     description_ar: z.string().optional(),
-    category: z.enum(['suits', 'shirts', 'pants', 'sweaters']),
+    category: z.enum(['suits', 'blazers', 'shirts', 'pants', 'sweaters', 'ties']),
     price: z.string().optional(),
     images: z.array(z.string()).default([]),
     featured: z.boolean().default(false),

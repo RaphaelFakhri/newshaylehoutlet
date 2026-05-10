@@ -11,5 +11,5 @@ export const SITE = {
   googleMapsEmbedUrl: 'https://www.google.com/maps?q=33.958800960936365,35.6531847433295&z=18&output=embed',
 };
 
-export const CATEGORIES = ['suits', 'shirts', 'pants', 'sweaters'] as const;
+export const CATEGORIES = ['suits', 'blazers', 'shirts', 'pants', 'sweaters', 'ties'] as const;
 export type Category = (typeof CATEGORIES)[number];

@@ -28,9 +28,11 @@ collections:
         widget: "select"
         options:
           - { label: "Suits", value: "suits" }
+          - { label: "Blazers", value: "blazers" }
           - { label: "Shirts", value: "shirts" }
           - { label: "Pants", value: "pants" }
           - { label: "Sweaters", value: "sweaters" }
+          - { label: "Ties", value: "ties" }
       - { name: "price", label: "Price (optional)", widget: "string", required: false }
       - name: "images"
         label: "Images"
