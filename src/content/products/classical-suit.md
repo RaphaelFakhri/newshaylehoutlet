@@ -6,7 +6,7 @@ description_ar: بدلة كلاسيكية سوداء قياس كبير
 category: suits
 price: 25$
 images:
-  - /images/products/FA6A752F-54E3-4786-84E1-09B555218A22.jpeg
+  - /images/products/17EBD8D1-D7EB-4249-8A8F-DA7518B6.jpg
 featured: true
 in_stock: true
 order: 0
