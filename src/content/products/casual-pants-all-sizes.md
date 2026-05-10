@@ -6,7 +6,7 @@ description_ar: بنطلون كل المقاسات والالوان
 category: pants
 price: 10$ to 25$
 images:
-  - /images/products/53A2B21E-D37D-44DF-807C-BA229420F193.jpeg
+  - /images/products/81817CC9-9041-408C-9F74-906A4D99.jpg
 featured: true
 in_stock: true
 order: 1
