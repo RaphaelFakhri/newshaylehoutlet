@@ -6,7 +6,7 @@ description_ar: قميص حمراء ناصعة
 category: shirts
 price: 15$
 images:
-  - /images/products/6A3BE160-E6DD-4094-A063-B4DE6A6A27CC.jpeg
+  - /images/products/9139F6B2-52EB-40E4-8056-0B51CF51.jpg
 featured: false
 in_stock: true
 order: 2
