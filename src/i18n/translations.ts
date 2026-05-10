@@ -20,7 +20,7 @@ export const ui = {
     'nav.sweaters': 'Sweaters',
     'nav.ties': 'Ties',
     'nav.visit': 'Visit Us',
-    'hero.title': 'Tailored Menswear at Outlet Prices',
+    'hero.title': 'Quality Menswear at Outlet Prices',
     'hero.subtitle': 'Visit our shop in New Shayleh — order any item directly on WhatsApp.',
     'hero.cta': 'Browse the Collection',
     'hero.whatsapp': 'Chat on WhatsApp',
